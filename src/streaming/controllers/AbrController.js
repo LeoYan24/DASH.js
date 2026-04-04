@@ -42,6 +42,7 @@ import SwitchRequestHistory from '../rules/SwitchRequestHistory.js';
 import DroppedFramesHistory from '../rules/DroppedFramesHistory.js';
 import Debug from '../../core/Debug.js';
 import MediaPlayerEvents from '../MediaPlayerEvents.js';
+import BBA0Rule from '../rules/abr/BBARule.js';
 
 const DEFAULT_VIDEO_BITRATE = 1000;
 const DEFAULT_BITRATE = 100;
@@ -92,6 +93,10 @@ function AbrController() {
             settings
         });
         abrRulesCollection.initialize();
+
+        // 添加自定义 BBA-0 规则
+        const bbaRule = BBARule(context).create();
+        abrRulesCollection.add('bba', bbaRule);
 
         eventBus.on(MediaPlayerEvents.QUALITY_CHANGE_RENDERED, _onQualityChangeRendered, instance);
         eventBus.on(MediaPlayerEvents.METRIC_ADDED, _onMetricAdded, instance);

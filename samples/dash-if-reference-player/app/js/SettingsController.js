@@ -2,7 +2,7 @@
  * SettingsController.js - Options panel state management and URL export/import
  */
 
-import {$} from './UIHelpers.js';
+import { $ } from './UIHelpers.js';
 import SETTINGS_DESCRIPTIONS from '../data/settingsDescriptions.js';
 
 export class SettingsController {
@@ -82,7 +82,8 @@ export class SettingsController {
                         droppedFramesRule: { active: this._isChecked('opt-rule-dropped-frames') },
                         abandonRequestsRule: { active: this._isChecked('opt-rule-abandon') },
                         l2ARule: { active: this._isChecked('opt-rule-l2a') },
-                        loLPRule: { active: this._isChecked('opt-rule-lolp') }
+                        loLPRule: { active: this._isChecked('opt-rule-lolp') },
+                        bbaRule: { active: this._isChecked('opt-rule-bba') }
                     }
                 },
                 text: {
@@ -438,7 +439,7 @@ export class SettingsController {
             'opt-fast-switch', 'opt-auto-switch-video',
             'opt-rule-throughput', 'opt-rule-bola', 'opt-rule-insufficient-buffer',
             'opt-rule-switch-history', 'opt-rule-dropped-frames', 'opt-rule-abandon',
-            'opt-rule-l2a', 'opt-rule-lolp',
+            'opt-rule-l2a', 'opt-rule-lolp', 'opt-rule-bba',
             'opt-text-default-enabled', 'opt-force-text-streaming',
             'opt-imsc-rollup', 'opt-imsc-forced-only',
             'opt-apply-service-desc', 'opt-use-suggested-pd',
@@ -572,6 +573,7 @@ export class SettingsController {
         this._setChecked('opt-rule-abandon', s?.streaming?.abr?.rules?.abandonRequestsRule?.active);
         this._setChecked('opt-rule-l2a', s?.streaming?.abr?.rules?.l2ARule?.active);
         this._setChecked('opt-rule-lolp', s?.streaming?.abr?.rules?.loLPRule?.active);
+        this._setChecked('opt-rule-bba', s?.streaming?.abr?.rules?.bbaRule?.active);
 
         // ---- Live Delay ----
         this._setChecked('opt-apply-service-desc', s?.streaming?.applyServiceDescription);
