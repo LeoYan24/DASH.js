@@ -94,6 +94,10 @@ function ABRRulesCollection(config) {
                 abandonFragmentRules.push(rule.rule(context).create());
             }
         });
+        const bbaRuleActive = settings.get().streaming.abr.rules.bbaRule?.active;
+        if (bbaRuleActive && !_arrayContainsRule(qualitySwitchRules, 'BBARule')) {
+            qualitySwitchRules.push(BBARule(context).create());
+        }
 
         // If we still got no rule for quality switch use Throughput and Bola
         if (qualitySwitchRules.length === 0) {
