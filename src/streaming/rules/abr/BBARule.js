@@ -11,8 +11,8 @@ function BBARule() {
             const bufferLevel = rulesContext.getBufferState().getBufferLevel();
             const bitrateList = abrController.getBitrateList(mediaInfo);
 
-            if (!bitrateList || bitrateList.length === 0) return -1;
-            if (bufferLevel === undefined) return bitrateList.length - 1;
+            if (!bitrateList || bitrateList.length === 0) { return -1 };
+            if (bufferLevel === undefined) { return bitrateList.length - 1 };
 
             let targetBitrateIndex;
 
@@ -30,7 +30,8 @@ function BBARule() {
             // 保证索引有效
             targetBitrateIndex = Math.min(Math.max(targetBitrateIndex, 0), bitrateList.length - 1);
             return targetBitrateIndex;
-        }
+        },
+        getClassName: function () { return 'BBARule'; }
     };
 
     return instance;

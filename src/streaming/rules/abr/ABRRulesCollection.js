@@ -41,7 +41,7 @@ import SwitchRequest from '../SwitchRequest.js';
 import EventBus from '../../../core/EventBus.js';
 import Events from '../../../core/events/Events.js';
 import Constants from '../../constants/Constants.js';
-
+import BBARule from './BBARule.js';
 
 function ABRRulesCollection(config) {
 
@@ -164,7 +164,8 @@ function ABRRulesCollection(config) {
                     mediaPlayerModel: mediaPlayerModel,
                     settings: settings
                 })
-
+            case Constants.QUALITY_SWITCH_RULES.BBA_RULE:
+                return BBARule(context).create();
         }
     }
 
